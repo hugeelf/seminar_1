@@ -19,5 +19,5 @@ int index=1;
 int answer=0;
 int squares = 0;
 Console.WriteLine("Введите число, для которого необходимо построить таблицу квадратов:");
-int n = Convert.ToInt32(Console.ReadLine());
+int n = Math.Abs(Convert.ToInt32(Console.ReadLine()));
 squares = squaresOneToN(n, index, answer);
