@@ -9,20 +9,20 @@
 
 */
 
-int howMuchIsTheDigits(int number)
+int HowMuchIsTheDigits(int number)
 {
-  int digitCounter = 0;
-  while (number!=0)
-  {
-    number = number/10;
-    digitCounter++;
-    //Console.WriteLine(number);
-    //Console.WriteLine(digitCounter);
-  }
+    int digitCounter = 0;
+    while (number != 0)
+    {
+        number = number / 10;
+        digitCounter++;
+        //Console.WriteLine(number);
+        //Console.WriteLine(digitCounter);
+    }
     return digitCounter;
 }
 
 
 Console.WriteLine("Введите число");
 int number = Math.Abs(Convert.ToInt32(Console.ReadLine()));
-Console.WriteLine($"Количество цифр в числе {number} = {howMuchIsTheDigits(number)}");
+Console.WriteLine($"Количество цифр в числе {number} = {HowMuchIsTheDigits(number)}");
