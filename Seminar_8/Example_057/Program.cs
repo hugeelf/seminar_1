@@ -1,38 +1,26 @@
-﻿Console.WriteLine("Введите количество строк");
-int raws = Convert.ToInt32(Console.ReadLine());
+﻿// Задача 57: Составить частотный словарь элементов
+// двумерного массива. Частотный словарь содержит
+// информацию о том, сколько раз встречается элемент
+// входных данных.
 
-Console.WriteLine("Ведите количество столбцов");
-int colums = Convert.ToInt32(Console.ReadLine());
-
-int[,] array = new int[raws, colums];
-
-void FillArray(int[,] array)
+int[,] FillArray(int rowNumber, int columnNumber)
 {
-    for (int i = 0; i < array.GetLength(0); i++)
+    int[,] result = new int[rowNumber, columnNumber];
+    for (int i = 0; i < rowNumber; i++)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < columnNumber; j++)
         {
-            array[i, j] = new Random().Next(1, 20);
-        }
-    }
-}
-
-void PrintArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($"{array[i, j]} \t");
+            result[i, j] = new Random().Next(1, 20);
+            Console.Write($"{result[i, j]} \t");
         }
         Console.WriteLine();
     }
+    return result;
 }
-int[] GetRowArray(int[,] array)
+int[] TempArray(int[,] array)
 {
-    int[] result = new int[array.GetLength(0) * array.GetLength(1)];
+    int [] result = new int[array.GetLength(0) * array.GetLength(1)];
     int count = 0;
-
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
@@ -43,22 +31,23 @@ int[] GetRowArray(int[,] array)
     }
     return result;
 }
-void SortArray(int[] result)
+
+int[] ArraySort(int[] result)
 {
     for (int i = 0; i < result.Length; i++)
     {
-        for (int j = i + 1; j < result.Length; j++)
-        {
+        for (int j = 0; j < result.Length; j++)
             if (result[i] > result[j])
             {
                 int temp = result[i];
                 result[i] = result[j];
                 result[j] = temp;
             }
-        }
     }
+    return result;
 }
-void PrintDate(int[] result)
+
+void PrintData(int[] result)
 {
     int count = 1;
     int firstNumber = result[0];
@@ -78,11 +67,10 @@ void PrintDate(int[] result)
     Console.WriteLine($"{firstNumber} встречается {count} раз.");
 }
 
-
-FillArray(array);
-PrintArray(array);
-int [] result = GetRowArray(array);
-Console.WriteLine();
-SortArray(result);
-PrintDate(result);
+int rowNumber = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+int columnNumber = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+int [,] array = FillArray(rowNumber, columnNumber);
+int [] oneDimensionArray =  TempArray(array);
+oneDimensionArray = ArraySort(oneDimensionArray);
+PrintData (oneDimensionArray);
 
